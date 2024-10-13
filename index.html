@@ -35,35 +35,25 @@
         }
 
         nav {
-            margin: 1rem 0;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2rem;
+            flex: 1; /* Laat de nav ruimte innemen in de flex container */
+            display: flex;
+            flex-direction: column; /* Zorg ervoor dat de knoppen onder elkaar staan */
+            align-items: center; /* Centreert de knoppen */
+            padding: 20px; /* Voeg padding toe aan de nav */
         }
 
         .button {
-            display: inline-block;
+            display: block; /* Maak de knoppen blokken */
+            width: 90%; /* Knoppen nemen 90% van de breedte in */
+            max-width: 400px; /* Max breedte voor de knoppen */
             background-color: #4CAF50;
             color: white;
-            padding: 15px 25px;
-            font-size: 16px;
+            padding: 20px; /* Grotere padding voor grotere knoppen */
+            font-size: 1.5rem; /* Grotere tekst */
             border-radius: 5px;
             text-align: center;
             text-decoration: none;
-            margin: 10px 0;
+            margin: 10px 0; /* Ruimte tussen de knoppen */
         }
 
         .button:hover {
@@ -75,7 +65,6 @@
             color: #fff;
             text-align: center;
             padding: 1rem 0;
-            margin-top: auto; /* Laat de footer onderaan de pagina blijven */
         }
 
         footer p {
@@ -89,11 +78,9 @@
     </header>
 
     <nav>
-        <ul>
-            <li><a href="https://niam3231.github.io/over-mij/" class="button">Over mij</a></li>
-            <li><a href="https://niam3231.github.io/webshop/" class="button">Webshop</a></li>
-            <li><a href="https://niam3231.github.io/game/" class="button">Game spelen</a></li>
-        </ul>
+        <a href="https://niam3231.github.io/over-mij/" class="button">Over mij</a>
+        <a href="https://niam3231.github.io/webshop/" class="button">Webshop</a>
+        <a href="https://niam3231.github.io/game/" class="button">Game spelen</a>
     </nav>
 
     <footer>
