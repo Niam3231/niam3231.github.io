@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Info over Liam - Blokken</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(to bottom, red, limegreen);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .content-section {
+            padding: 2rem;
+            background-color: #fff;
+            margin: 2rem auto;
+            max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            transition: 0.4s;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .accordion:hover {
+            background-color: #45a049;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        footer {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Info over Liam</h1>
+    </header>
+
+    <section class="content-section">
+        <h2>Informatie</h2>
+
+        <button class="accordion">Games</button>
+        <div class="panel">
+            <p>Liam houdt enorm van gamen en heeft een brede interesse in verschillende genres, maar zijn favorieten blijven <strong>Fortnite</strong>, <strong>GTA V</strong> en vooral <strong>Minecraft</strong>. Minecraft blijft zijn nummer 1, vooral omdat hij houdt van de eindeloze creativiteit die de game biedt. Hij speelt vaak met mods om zijn ervaring aan te passen en nieuwe elementen toe te voegen, zoals wapens of spannende avonturen. Liam speelt meestal de Java-editie van Minecraft vanwege de mods, maar hij vindt de Bedrock-editie ook fijn omdat die sneller werkt op zijn laptop. Hij heeft één keer de Enderdragon verslagen en ziet het spel als een constante bron van vermaak.</p>
+        </div>
+
+        <button class="accordion">Sterke kanten</button>
+        <div class="panel">
+            <p>Liam heeft een aantal sterke punten die hem onderscheiden van anderen. Zijn grootste kracht ligt in zijn analytische denkvermogen. Hij is in staat om complexe problemen op te lossen, vooral als het gaat om technologie en computers. Dit komt goed van pas bij zijn passie voor 3D-modelleren in Blender. Hij heeft een scherp oog voor detail, wat blijkt uit de zorg die hij besteedt aan het perfectioneren van zelfs de kleinste aspecten van zijn werk. Bovendien is Liam zeer creatief en kan hij originele ideeën bedenken en uitvoeren, wat hem niet alleen helpt in games, maar ook in zijn persoonlijke projecten.</p>
+        </div>
+
+        <button class="accordion">Persoonlijkheidstype</button>
+        <div class="panel">
+            <p>Liam is een <strong>INTP-T</strong>, ook wel bekend als de "Logicus". Dit persoonlijkheidstype staat bekend om zijn diepgaande nieuwsgierigheid naar de wereld, gecombineerd met een analytische en rationele benadering van problemen. Liam is introvert en vindt het vaak fijn om tijd voor zichzelf te hebben, waarbij hij zich richt op de dingen die hem interesseren, zoals technologie, games en 3D-modelleren. Hij is intuïtief, wat betekent dat hij vaak gericht is op het grotere geheel en abstracte ideeën. Zijn rationele kant zorgt ervoor dat hij logisch nadenkt, en hij heeft een constante drang om zijn kennis te vergroten. Ondanks zijn introverte aard kan Liam diepgaande en boeiende gesprekken voeren wanneer hij zich op zijn gemak voelt.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Deze informatie is persoonlijk. Niet delen zonder toestemming van de eigenaar. Bedankt.</p>
+    </footer>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
