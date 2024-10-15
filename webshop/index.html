@@ -15,15 +15,15 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Zorgt ervoor dat de body ten minste de hoogte van het scherm heeft */
+            min-height: 100vh;
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background: linear-gradient(to bottom, red, limegreen); /* Aangepaste achtergrond */
+            background: linear-gradient(to bottom, red, limegreen);
             color: #333;
         }
 
         header {
-            background-color: rgba(51, 51, 51, 0.8); /* Achtergrond met transparantie */
+            background-color: rgba(51, 51, 51, 0.8);
             color: #fff;
             padding: 1rem 0;
             text-align: center;
@@ -34,40 +34,14 @@
             font-size: 2.5rem;
         }
 
-        nav {
-            flex: 1; /* Laat de nav ruimte innemen in de flex container */
-            display: flex;
-            flex-direction: column; /* Zorg ervoor dat de knoppen onder elkaar staan */
-            align-items: center; /* Centreert de knoppen */
-            padding: 20px; /* Voeg padding toe aan de nav */
-        }
-
-        .button {
-            display: block; /* Maak de knoppen blokken */
-            width: 90%; /* Knoppen nemen 90% van de breedte in */
-            max-width: 400px; /* Max breedte voor de knoppen */
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px; /* Grotere padding voor grotere knoppen */
-            font-size: 1.5rem; /* Grotere tekst */
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            margin: 10px 0; /* Ruimte tussen de knoppen */
-        }
-
-        .button:hover {
-            background-color: #45a049;
-        }
-
         .shop-section {
-            background-color: #fff; /* Wit vak */
+            background-color: #fff;
             padding: 20px;
-            margin: 20px auto; /* Midden in de pagina */
-            max-width: 900px; /* Max breedte voor de webshop */
+            margin: 20px auto;
+            max-width: 900px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center; /* Center de tekst */
+            text-align: center;
         }
 
         .shop-item {
@@ -76,19 +50,50 @@
             border: 1px solid #ddd;
             margin-bottom: 15px;
             border-radius: 8px;
-            text-align: center; /* Centreer de inhoud */
+            text-align: center;
         }
 
         .shop-item .button {
-            display: inline-block; /* Zorgt ervoor dat de knop niet 100% van de breedte inneemt */
+            display: inline-block;
             margin-top: 10px;
         }
 
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .close-btn {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
         footer {
-            background-color: rgba(51, 51, 51, 0.8); /* Achtergrond met transparantie */
+            background-color: rgba(51, 51, 51, 0.8);
             color: #fff;
             text-align: center;
             padding: 1rem 0;
+            margin-top: auto;
         }
 
         footer p {
@@ -103,29 +108,64 @@
 
     <section class="shop-section">
         <h2>Welkom bij de Webshop!</h2>
-        <p>Hier vind je een selectie van de beste producten die ik verkoop. Kijk gerust rond en klik op een item voor meer informatie.</p>
+        <p>Hier vind je een selectie van de beste producten die ik verkoop. Klik op een product voor meer informatie.</p>
 
         <div class="shop-item">
             <h3>Product 1</h3>
             <p>Beschrijving van product 1. Dit is een geweldig product dat je leven gemakkelijker maakt.</p>
-            <a href="#" class="button">Bekijk product</a>
+            <button class="button" onclick="openPopup('popup1')">Bekijk product</button>
         </div>
 
         <div class="shop-item">
             <h3>Product 2</h3>
             <p>Beschrijving van product 2. Dit product is een must-have voor iedereen die van technologie houdt.</p>
-            <a href="#" class="button">Bekijk product</a>
+            <button class="button" onclick="openPopup('popup2')">Bekijk product</button>
         </div>
 
         <div class="shop-item">
             <h3>Product 3</h3>
             <p>Beschrijving van product 3. Ontdek wat dit product zo speciaal maakt en waarom je het nodig hebt.</p>
-            <a href="#" class="button">Bekijk product</a>
+            <button class="button" onclick="openPopup('popup3')">Bekijk product</button>
         </div>
     </section>
+
+    <!-- Popups voor elk product -->
+    <div class="popup" id="popup1">
+        <div class="popup-content">
+            <h3>Product 1 Details</h3>
+            <p>Meer informatie over product 1. Dit product is geweldig voor dagelijks gebruik en biedt fantastische functionaliteit.</p>
+            <button class="close-btn" onclick="closePopup('popup1')">Sluiten</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup2">
+        <div class="popup-content">
+            <h3>Product 2 Details</h3>
+            <p>Meer informatie over product 2. Dit product is speciaal ontworpen voor tech-liefhebbers en biedt uitstekende prestaties.</p>
+            <button class="close-btn" onclick="closePopup('popup2')">Sluiten</button>
+        </div>
+    </div>
+
+    <div class="popup" id="popup3">
+        <div class="popup-content">
+            <h3>Product 3 Details</h3>
+            <p>Meer informatie over product 3. Dit unieke product onderscheidt zich door zijn innovatie en kwaliteit.</p>
+            <button class="close-btn" onclick="closePopup('popup3')">Sluiten</button>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; Deze informatie is persoonlijk. Niet delen zonder toestemming van de eigenaar. Bedankt.</p>
     </footer>
+
+    <script>
+        function openPopup(popupId) {
+            document.getElementById(popupId).style.display = 'flex';
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+        }
+    </script>
 </body>
 </html>
