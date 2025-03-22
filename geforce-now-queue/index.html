@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeForce NOW Server Wachtrijstatus</title>
+    <title>GeForce NOW Server queue</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,19 +49,27 @@
             font-size: 18px;
             color: #666;
         }
+        .high-queue {
+            color: red;
+            font-weight: bold;
+        }
+        .low-queue {
+            color: green;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>GeForce NOW Server Wachtrijstatus</h1>
-        <div id="loading" class="loading">Gegevens laden...</div>
+        <h1>GeForce NOW Server queue</h1>
+        <div id="loading" class="loading">Loading the API...</div>
         <table id="queueTable" style="display: none;">
             <thead>
                 <tr>
                     <th>Server</th>
-                    <th>Regio</th>
-                    <th>Wachtrijpositie</th>
-                    <th>Laatste update</th>
+                    <th>Region</th>
+                    <th>Queue Position</th>
+                    <th>Latest update</th>
                 </tr>
             </thead>
             <tbody id="queueTableBody">
@@ -112,30 +120,28 @@
                 "NP-SOF-02": "EU East"
             };
 
-            fetch('https://api.printedwaste.com/gfn/queue?_gl=1*1tgao1h*_ga*MTg1Nzc4NDk3My4xNzQyMzEyMTEx*_ga_7N4Y33LG0B*MTc0MjY1MTkyOS43LjEuMTc0MjY1MjAzMy4wLjAuMA..*_ga_815621Q6EP*MTc0MjY1MTkzMC43LjEuMTc0MjY1MjAzMy4wLjAuMA..')
+            fetch('https://api.printedwaste.com/gfn/queue')
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('queueTableBody');
                     const loadingDiv = document.getElementById('loading');
                     const table = document.getElementById('queueTable');
 
-                    // Sorteer de servers op regio en vervolgens op servernaam
                     const servers = Object.keys(data).map(key => ({
                         code: key,
                         name: serverNameMapping[key] || key,
                         ...data[key]
                     }));
-                    servers.sort((a, b) => {
-                        if (a.Region === b.Region) {
-                            return a.name.localeCompare(b.name);
-                        }
-                        return a.Region.localeCompare(b.Region);
-                    });
+                    servers.sort((a, b) => a.Region.localeCompare(b.Region) || a.name.localeCompare(b.name));
 
                     servers.forEach(server => {
                         const row = document.createElement('tr');
+                        const highQueue = server.QueuePosition > 250;
+                        const lowQueue = server.QueuePosition < 10;
                         row.innerHTML = `
-                            <td>${server.name}</td>
+                            <td class="${highQueue ? 'high-queue' : lowQueue ? 'low-queue' : ''}">
+                                ${server.name} ${highQueue ? '💀' : ''}
+                            </td>
                             <td>${server.Region}</td>
                             <td>${server.QueuePosition}</td>
                             <td>${new Date(server['Last Updated'] * 1000).toLocaleString('nl-NL')}</td>
@@ -147,9 +153,8 @@
                     table.style.display = 'table';
                 })
                 .catch(error => {
-                    const loadingDiv = document.getElementById('loading');
-                    loadingDiv.textContent = 'Fout bij het laden van gegevens. Probeer het later opnieuw.';
-                    console.error('Fout bij het ophalen van de API:', error);
+                    document.getElementById('loading').textContent = 'Error loading data. Please try again later.';
+                    console.error('Error retrieving API:', error);
                 });
         });
     </script>
