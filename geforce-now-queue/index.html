@@ -72,6 +72,46 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const serverNameMapping = {
+                "NP-DAL-02": "US Central",
+                "NP-DAL-03": "US Central",
+                "NP-ASH-03": "US East",
+                "NP-CHI-03": "US Midwest",
+                "NP-NWK-02": "US Northeast",
+                "NP-PDX-02": "US Northwest",
+                "NP-ATL-02": "US South",
+                "NP-MIA-02": "US Southeast",
+                "NP-LAX-02": "US Southwest",
+                "NP-PHX-01": "US Southwest",
+                "NP-SJC6-02": "US West",
+                "NP-AMS-02": "EU West",
+                "NP-AMS-03": "EU West",
+                "NP-FRK-04": "EU Central",
+                "NP-FRK-05": "EU Central",
+                "NP-PAR-02": "EU West",
+                "NP-PAR-03": "EU West",
+                "NP-LON-03": "EU Northwest",
+                "NP-LON-04": "EU Northwest",
+                "NP-STH-02": "EU North",
+                "NP-STH-03": "EU North",
+                "NP-SOF-01": "EU East",
+                "NP-WAW-01": "EU East",
+                "NP-AMS-04": "EU West",
+                "NP-TYO-01": "JP East",
+                "NP-MON-01": "CA East",
+                "NPA-GKR-SEL-01": "KR South",
+                "NPA-GKR-SEL-02": "KR South",
+                "NPA-GCS-EVN-01": "CAUCASUS",
+                "NP-DAL-04": "US Central",
+                "NP-ASH-04": "US East",
+                "NP-AMS-05": "EU West",
+                "NP-FRK-06": "EU Central",
+                "NP-PAR-04": "EU West",
+                "NP-LON-05": "EU Northwest",
+                "NP-LON-06": "EU Northwest",
+                "NP-SOF-02": "EU East"
+            };
+
             fetch('https://api.printedwaste.com/gfn/queue?_gl=1*1tgao1h*_ga*MTg1Nzc4NDk3My4xNzQyMzEyMTEx*_ga_7N4Y33LG0B*MTc0MjY1MTkyOS43LjEuMTc0MjY1MjAzMy4wLjAuMA..*_ga_815621Q6EP*MTc0MjY1MTkzMC43LjEuMTc0MjY1MjAzMy4wLjAuMA..')
                 .then(response => response.json())
                 .then(data => {
@@ -80,7 +120,11 @@
                     const table = document.getElementById('queueTable');
 
                     // Sorteer de servers op regio en vervolgens op servernaam
-                    const servers = Object.keys(data).map(key => ({ name: key, ...data[key] }));
+                    const servers = Object.keys(data).map(key => ({
+                        code: key,
+                        name: serverNameMapping[key] || key,
+                        ...data[key]
+                    }));
                     servers.sort((a, b) => {
                         if (a.Region === b.Region) {
                             return a.name.localeCompare(b.name);
